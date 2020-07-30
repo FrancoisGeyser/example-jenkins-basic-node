@@ -1,9 +1,19 @@
 pipeline {
-    agent { docker { image 'node:current-slim' } }
+    agent any
     stages {
+        stage('install') {
+            steps {
+                sh 'npm install'
+            }
+        }
         stage('build') {
             steps {
-                sh 'npm install && npm start'
+                echo 'Done!'
+            }
+        }
+        stage('run') {
+            steps {
+                sh 'npm start'
             }
         }
     }
